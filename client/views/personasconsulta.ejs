@@ -1,0 +1,45 @@
+<!doctype html>
+<head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="../css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../css/ui-lightness/jquery-ui-1.10.4.custom.min.css" />
+<script src="../js/i18n/grid.locale-es.js" type="text/javascript"></script>
+<script src="../js/jquery.jqGrid.src.js" type="text/javascript"></script>
+<script src="../js/jquery.jqGrid.min.js" type="text/javascript"></script>
+
+<script>
+function test(){
+alert('click');
+};
+$(document).ready( 
+function ()
+	{
+	jQuery("#list2").jqGrid({
+   	url:'/api/entity/getpersonas',
+	datatype: "json",
+   	colNames:['Nombre','Apellido','Tipo Documento', 'Nro. Documento','Fec. Nacimiento'],
+   	colModel:[
+   		{name:'nombre',index:'nombre asc', width:100},
+   		{name:'apellido',index:'apellido asc', width:100},
+		{name:'tipoDocumento', width:100},
+   		{name:'numeroDocumento', width:100},
+		{name:'fechaNacimiento', width:100}
+   	],
+   	rowNum:10,
+   	rowList:[10,20,30],
+   	pager: '#pager2',
+   	sortname: 'id',
+    viewrecords: true,
+    sortorder: "desc",
+    caption:"Personas"
+});
+jQuery("#list2").jqGrid('navGrid','#pager2',{edit:true,add:true,del:false});
+	}
+);
+</script>
+</head>
+<body>
+
+<table id="list2"><tr><td></td></tr></table> 
+<div id="pager2"></div> 
+</body>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+	<title>Node Authentication</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<style>
+		body 		{ padding-top:80px; }
+	</style>
+</head>
+<body>
+<div class="container">
+
+<div class="col-sm-9 col-md-10">
+
+	<h1><span class="fa fa-sign-in"></span> Crear usuario</h1>
+
+	<!-- show any messages that come back with authentication -->
+	<% if (message.length > 0) { %>
+		<div class="alert alert-danger"><%= message %></div>
+	<% } %>
+
+	<!-- LOGIN FORM -->
+	<form action="/signup" method="post">
+		<div class="form-group">
+			<label>Email</label>
+			<input type="text" class="form-control" name="email">
+		</div>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" class="form-control" name="password">
+		</div>
+		<div class="form-group">
+			<label>Nombre</label>
+			<input type="text" class="form-control" name="nombre">
+		</div>
+		<div class="form-group">
+			<label>Apellido</label>
+			<input type="text" class="form-control" name="apellido">
+		</div>
+		<h2>Domicilio</h2>
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="input-group">
+					<label>Calle</label>
+					<input type="text" class="form-control" name="calle">
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="input-group">
+					<label>Localidad</label>
+					<input type="text" class="form-control" name="localidad">
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="input-group">
+					<label>Nro</label>
+					<input type="text" class="form-control" name="nro">
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="input-group">
+					<label>Piso</label>
+					<input type="text" class="form-control" name="piso">
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="input-group">
+					<label>Dto</label>
+					<input type="text" class="form-control" name="dto">
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="input-group">
+					<label>Codigo Postal</label>
+					<input type="text" class="form-control" name="cpa">
+				</div>
+			</div>		
+		</div>
+		<button type="submit" class="btn btn-lg">Crear</button>
+	</form>
+	<hr>
+	<p>Ir al Home<a href="/">home</a>.</p>
+
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+module.exports = function (modelousuario, mailUsuarioPadre)
+{
+	this.models = modelousuario;
+	this.mailUsuarioPadre = mailUsuarioPadre;
+	//Ver de agregar validaciones para que no se repita con otro existente en el mismo nivel
+	this.buscapadre = function (callback){
+		this.models.users.findOne({ 'local.email' : this.mailUsuarioPadre},function(err,usuario){
+			callback(usuario);
+		});
+	};
+	
+	this.armasegmentacion = function(usuariopadre,usuarionuevo){
+		if (usuariopadre){
+			var i = 1;
+			while(i <= parseInt(usuariopadre.Segmentacion.Nivel)+1){
+					if (eval('usuariopadre.CodSegmentacion'+i) != ''){
+						var segmentacionactual = eval ('usuariopadre.Segmentacion.CodSegmentacion'+i);
+						if (segmentacionactual);{
+							eval ('usuarionuevo.Segmentacion.CodSegmentacion'+i +"="+ eval('("segmentacionactual")'));
+						}
+						if(!eval ('usuariopadre.Segmentacion.CodSegmentacion'+i)){
+							var segnueva = generateCodSegmentacion();
+							eval ('usuarionuevo.Segmentacion.CodSegmentacion'+i +"="+ eval('("segnueva")'));
+						}
+					}
+					else {
+						var segmentacionueva = generateCodSegmentacion;
+						eval ('usuarionuevo.CodSegmentacion'+i +"="+ eval('("segmentacionueva")'));					
+					}
+					i++;
+			}
+			usuarionuevo.Segmentacion.Nivel = i-1;
+			console.log('octeto generado: '+ usuarionuevo.Segmentacion);
+		}
+		else {
+			usuarionuevo.Segmentacion.Nivel = 1
+			usuarionuevo.Segmentacion.CodSegmentacion1 = generateCodSegmentacion();
+		}
+		return usuarionuevo.Segmentacion;
+	}
+};
+
+
+function generateCodSegmentacion()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+};
